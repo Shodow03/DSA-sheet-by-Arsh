@@ -1,0 +1,52 @@
+class Solution {
+    public int maxArea(int[] height) {
+        // 1st solution
+//     int i=0;
+// 	int j=height.length-1;
+// 	int area=0;
+// 	while(i<j) {
+// 		if(height[i]<=height[j]) {
+// 			int hig=height[i];
+// 			int wid=j-i;
+// 			int ar=hig*wid;
+// 			if(area<ar) {
+// 				area=ar;
+// 			}
+// 			if(height[i]<height[i+1]) {
+// 				i++;
+// 			}else {
+// 				j--;
+// 			}
+// 		}else{
+// 			int hig=height[j];
+// 			int wid=j-i;
+// 			int ar=hig*wid;
+// 			if(area<ar) {
+// 				area=ar;
+// 			}
+// 			if(height[i]<height[i+1]) {
+// 				i++;
+// 			}else {
+// 				j--;
+// 			}
+// 	}
+// }
+// 	return area;
+        int left = 0;
+        int right = height.length - 1;
+        int max = 0;
+        while(left < right){
+            int w = right - left;
+            int h = Math.min(height[left], height[right]);
+            int area = h * w;
+            max = Math.max(max, area);
+            if(height[left] < height[right]) left++;
+            else if(height[left] > height[right]) right--;
+            else {
+                left++;
+                right--;
+            }
+        }
+        return max;
+    }
+}
