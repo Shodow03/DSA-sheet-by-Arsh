@@ -1,0 +1,36 @@
+class Solution {
+    public void moveZeroes(int[] nums) {
+        //1st solution(attempt)
+// 		int hold=0;
+// 		int index=0;
+// 		int i=0;
+// 		while(i<nums.length) {
+// 			if(nums[i]==0 && hold==0) {
+// 				hold=1;
+// 				index=i;
+// 				i++;
+// 			}else if(hold==1&&nums[i]!=0) {
+// 				nums[index]=nums[i];
+// 				nums[i]=0;
+// 				hold=0;
+// 				i=index;
+// 			}else {
+// 				i++;
+// 			}
+// 		}
+
+    int n = nums.length;
+    int j = -1;
+    int i = 0; 
+   
+    while(i < n ){
+        if(nums[i] == 0 && j == -1) j = i; 
+        else if(nums[i] != 0 && j != -1 ){
+            nums[j] = nums[i];
+            nums[i] = 0; 
+            j++ ;  
+         }
+        i++;
+    }
+    }
+}
