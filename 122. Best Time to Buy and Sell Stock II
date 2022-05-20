@@ -1,0 +1,21 @@
+class Solution {
+    public int maxProfit(int[] prices) {
+        if(prices == null || prices.length == 0) return 0;
+        int i = 0;
+        int top = prices[0];
+        int down = prices[0];
+        int max = 0;
+        while (i<prices.length-1){
+            while(i<prices.length-1&&prices[i]>=prices[i+1]){
+                i++;
+            }
+            down=prices[i];
+            while(i<prices.length-1&&prices[i]<=prices[i+1]){
+                i++;
+            }
+            top=prices[i];
+            max=max+top-down;
+        }
+        return max;
+    }
+}
