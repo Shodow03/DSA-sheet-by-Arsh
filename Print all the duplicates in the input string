@@ -1,0 +1,21 @@
+HashMap<Character, Integer> map=new HashMap<>();
+		int i=0;
+		while(i<s.length()) {
+			char c=s.charAt(i);
+			if(map.containsKey(c)) {
+				map.put(c,map.get(c)+1);
+			}else {
+				map.put(c, 1);
+			}
+			i++;
+		}
+
+		i=0;
+		while(i<s.length()) {
+			char c=s.charAt(i);
+			if(map.containsKey(c)&&map.get(c)>1) {
+				System.out.println(c);
+				map.remove(c);
+			}
+			i++;
+		}
