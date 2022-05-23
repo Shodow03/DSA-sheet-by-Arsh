@@ -1,0 +1,26 @@
+class Solution {
+    public int strStr(String haystack, String needle) {
+        
+		char c=needle.charAt(0);
+		int i=0;
+		while(i<haystack.length()) {
+			if(haystack.charAt(i)==c) {
+				int j=i;
+				int k=0;
+				while(j<haystack.length()&&k<needle.length()) {
+					if(haystack.charAt(j)!=needle.charAt(k)) {
+						break;
+					}else {
+						j++;
+						k++;
+					}
+				}
+				if(k==needle.length()) {
+					return i;
+				}
+			}
+            i++;
+		}
+		return -1;
+    }
+}
