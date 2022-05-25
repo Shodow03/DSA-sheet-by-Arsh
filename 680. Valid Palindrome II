@@ -1,0 +1,38 @@
+class Solution {
+    
+    	private static boolean checkpalin(String s,int i,int j) {
+		while(i<=j) {
+			if(s.charAt(i)!=s.charAt(j)) {
+				return false;
+			}
+			i++;
+			j--;
+		}
+		
+		return true;
+		
+	}
+    
+    public boolean validPalindrome(String s) {
+		for(int i=0,j=s.length()-1;i<=j;i++,j--) {
+			if(s.charAt(i)!=s.charAt(j)) {
+				boolean a=false;
+				boolean b=false;
+				if(s.charAt(i+1)==s.charAt(j)) {
+					a=checkpalin(s, i+1, j);
+				}
+				if(s.charAt(i)==s.charAt(j-1)) {
+					b=checkpalin(s, i, j-1);
+				}
+				
+				if(a==false&&b==false) {
+					return false;
+				}else {
+					return true;
+				}
+			}
+		}
+		
+		return true;
+    }
+}
