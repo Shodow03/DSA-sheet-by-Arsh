@@ -1,0 +1,83 @@
+class Solution {
+    private static char[] result(char a,char b) {
+		char []arr=new char[2];
+		if(a=='0' && b=='0') {
+			arr[0]='0';
+			arr[1]='0';
+			return arr;
+		}else if(a=='1' && b=='0' || a=='0' && b=='1') {
+			arr[0]='1';
+			arr[1]='0';
+			return arr;
+		}else {
+			arr[1]='1';
+			arr[0]='0';
+			return arr;
+		}
+	}
+    public String addBinary(String a, String b) {
+        int i=a.length()-1;
+		int j=b.length()-1;
+		String str="";
+		int carray=0;
+		while(i>=0 && j>=0) {
+			char c=a.charAt(i);
+			char d=b.charAt(j);
+			if(carray==0) {
+				char ch[]=result(c, d);
+				if(ch[1]=='0') {
+					str=ch[0]+str;
+				}else {
+					carray=1;
+					str=ch[0]+str;
+				}
+			}else {
+				
+				char ch[]=result(c,d);
+				char dh[]=result(ch[0],'1');
+				str=dh[0]+str;
+				if(ch[1]!='1' && dh[1]!='1') {
+					carray=0;
+				}
+			}
+			i--;
+			j--;
+		}
+		while(i>=0) {
+			char c=a.charAt(i);
+			if(carray==0) {
+				str=c+str;
+			}else {
+				char ch[]=result(c,'1');
+				str=ch[0]+str;
+				if(ch[1]=='1') {
+					carray=1;
+				}else {
+					carray=0;
+				}
+			}
+			i--;
+		}
+		while(j>=0) {
+			char c=b.charAt(j);
+			if(carray==0) {
+				str=c+str;
+			}else {
+				char ch[]=result(c,'1');
+				str=ch[0]+str;
+				if(ch[1]=='1') {
+					carray=1;
+				}else {
+					carray=0;
+				}
+			}
+			j--;
+		}
+		if(carray==1 && i<0&&j<0 ) {
+			str='1'+str;
+		}
+
+		return str;
+
+    }
+}
