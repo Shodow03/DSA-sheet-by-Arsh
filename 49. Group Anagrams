@@ -1,0 +1,57 @@
+class Solution{
+    public List<List<String>> groupAnagrams(String[] strs) {
+        if (strs == null || strs.length == 0) return new ArrayList<>();
+        Map<String, List<String>> map = new HashMap<>();
+        for (String s : strs) {
+            char[] ca = s.toCharArray();
+            Arrays.sort(ca);
+            String keyStr = String.valueOf(ca);
+            if (!map.containsKey(keyStr)) map.put(keyStr, new ArrayList<>());
+            map.get(keyStr).add(s);
+        }
+        return new ArrayList<>(map.values());
+    }
+}
+
+
+// class Solution {
+    
+//     public static boolean checkAnagram(String s,String st) {
+// 		if(s.length()!=st.length()) {
+// 			return false;
+// 		}
+// 		char []arr1=s.toCharArray();
+// 		char []arr2=st.toCharArray();
+// 		Arrays.sort(arr1);
+// 		Arrays.sort(arr2);
+		
+// 		return Arrays.equals(arr1, arr2);
+		
+// 	}
+    
+//     public List<List<String>> groupAnagrams(String[] strs) {
+        
+// 		boolean []check=new boolean[strs.length];
+// 		List<List<String>> l=new ArrayList<List<String>>();
+		
+// 		for(int i=0;i<strs.length;i++) {
+// 			if(!check[i]) {
+// 				String s=strs[i];
+// 				List<String> str=new ArrayList<String>();
+// 				str.add(s);
+// 				check[i]=true;
+// 				for(int j=i+1;j<strs.length;j++) {
+// 					String st=strs[j];
+// 					if(!check[j] && checkAnagram(s, st)) {
+// 						check[j]=true;
+// 						str.add(st);
+// 					}
+// 				}
+// 				l.add(str);
+// 			}
+// 		}
+		
+// 		return l;
+//     }
+// }
+
