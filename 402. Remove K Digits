@@ -1,0 +1,42 @@
+class Solution {
+    public String removeKdigits(String num, int k) {
+        int l=num.length();
+		if(k==l) {
+			return "0";
+		}
+		
+		Stack<Character> st=new Stack<>();
+		int i=0;
+		while(i<num.length()) {
+			while(k>0&&!st.isEmpty()&&st.peek()>num.charAt(i)) {
+				st.pop();
+				k--;
+			}
+			st.push(num.charAt(i));
+			i++;
+		}
+        
+        while(k>0){
+            st.pop();
+            k--;            
+        }
+		
+		String str="";
+		while(!st.isEmpty()) {
+			str=st.pop()+str;
+		}
+        
+        int j=0;
+		i=0;
+		while(i<str.length()) {
+			if(str.charAt(i)=='0') {
+				j=i;
+			}else{
+                j=i;
+                break;
+            }
+            i++;
+		}
+		return str.substring(j);
+    }
+}
