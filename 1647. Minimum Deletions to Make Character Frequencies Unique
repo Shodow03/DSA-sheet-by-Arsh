@@ -1,0 +1,41 @@
+class Solution {
+    public int minDeletions(String s) {
+        char []ch=s.toCharArray();
+		Arrays.sort(ch);
+		String str=String.valueOf(ch);
+		HashMap<Integer, Character> map=new HashMap<>();
+		int i=0,count=1,minDel=0;
+		while(i<str.length()-1) {
+			if(str.charAt(i)!=str.charAt(i+1)) {
+				if(map.containsKey(count)) {
+					while(map.containsKey(count)&&count>0) {
+						count=count-1;
+						minDel++;
+					}
+					map.put(count, str.charAt(i));
+					count=1;
+				}else {
+					map.put(count, str.charAt(i));
+					count=1;
+				}
+			}else {
+				count++;
+			}
+			i++;	
+		}
+		
+		if(map.containsKey(count)) {
+			while(map.containsKey(count)&&count>0) {
+				count=count-1;
+				minDel++;
+			}
+			map.put(count, str.charAt(i));
+			count=1;
+		}else {
+			map.put(count, str.charAt(i));
+			count=1;
+		}
+		
+		return minDel;
+    }
+}
