@@ -1,0 +1,27 @@
+class Solution {
+    
+static HashMap<Integer, Integer> map=new HashMap<>();
+    public int climbStairs(int n) {
+     if(n==1) {
+			return 1;
+		}else if(n==2){
+			return 2;
+		}
+		int a=0,b=0;
+		if(map.containsKey(n-1)) {
+			a=map.get(n-1);
+		}else {
+			a=climbStairs(n-1);
+			map.put(n-1,a);
+		}
+		
+		if(map.containsKey(n-2)) {
+			b=map.get(n-2);
+		}else {
+			b=climbStairs(n-2);
+			map.put(n-2, b);
+		}
+		int ways=a+b;
+		return ways;
+    }
+}
