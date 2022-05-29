@@ -1,0 +1,41 @@
+class Solution {
+    public int reachNumber(int target) {
+        if(target == 0 || target == 1) return target;
+        target = Math.abs(target);
+        int sum=0;
+        int step=0;
+        while(sum < target){
+            step += 1;
+            sum += step;
+        }
+        int diff = sum-target;
+        
+        if(diff%2 == 0) return step;  
+        if(step%2 == 0) return step+1;
+        
+        return step+2;
+    }
+}
+// class Solution {
+//     public static int reachNumber(int target,int pos,int i) {
+// 		if(pos>target) {
+// 			return Integer.MAX_VALUE;
+// 		}else if(pos<-target) {
+// 			return Integer.MAX_VALUE;
+// 		}else if(pos==target) {
+// 			return i;
+// 		}
+		
+// 		int a=reachNumber(target, pos+i, i+1);
+// 		int b=reachNumber(target, pos-i, i+1);
+        
+// 		return Math.min(a, b);
+// 	}
+    
+//     public int reachNumber(int target) {
+//         if(target<0){
+//             target=target*(-1);
+//         }
+//         return reachNumber(target,0,1)-1;
+//     }
+// }
