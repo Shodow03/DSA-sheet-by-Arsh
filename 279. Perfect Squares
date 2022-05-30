@@ -1,0 +1,15 @@
+class Solution {
+    public static HashMap<Integer,Integer> m= new HashMap<>();
+    public int numSquares(int n) {
+        if(n==0) return 0;
+		int min=Integer.MAX_VALUE;
+		for(int i=1;i*i<=n;i++) {
+			if(m.containsKey(n-i*i)) min=Math.min(m.get(n-i*i), min);
+			else {
+				m.put(n-i*i,numSquares(n-i*i));
+				min=Math.min(m.get(n-i*i), min);
+            }
+		}
+		return min+1;
+    }
+}
