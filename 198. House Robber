@@ -1,0 +1,21 @@
+class Solution {
+	public static int rob(int[] nums,int i,HashMap<Integer, Integer> mp) {
+		if(i>=nums.length) return 0;
+		int a=0,b=0;
+		if(mp.containsKey(i+2)) a=nums[i]+mp.get(i+2);
+		else {
+			mp.put(i+2, rob(nums,i+2,mp));
+			a=nums[i]+mp.get(i+2);
+		}
+		if(mp.containsKey(i+1)) b=mp.get(i+1);
+		else {
+			mp.put(i+1, rob(nums,i+1,mp));
+			b=mp.get(i+1);
+		}
+		return Math.max(a, b);
+	}
+    public int rob(int []nums){
+        HashMap<Integer, Integer> mp=new HashMap<>();
+        return rob(nums,0,mp);
+    }
+}
