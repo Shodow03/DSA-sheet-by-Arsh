@@ -1,0 +1,77 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode mergeTwoLists(ListNode head1, ListNode head2) {
+        ListNode tail1=head1;
+		ListNode tail2=head2;
+
+		ListNode head=null;
+		ListNode tail=null;
+
+		while(tail1!=null && tail2 !=null) {
+			ListNode temp=new ListNode();
+			if(tail1.val>tail2.val) {
+				temp=tail2;
+				if(head==null) {
+					head=temp;
+					tail=head;
+					tail2=tail2.next;
+				}else {
+					tail.next=temp;
+					tail=temp;
+					tail2=tail2.next;
+				}
+			}else {
+				temp=tail1;
+				if(head==null) {
+					head=temp;
+					tail=head;
+					tail1=tail1.next;
+				}else {
+					tail.next=temp;
+					tail=temp;
+					tail1=tail1.next;
+				}
+			}
+		}
+
+
+		while(tail2!=null) {
+			ListNode temp=new ListNode();
+			temp=tail2;
+			if(head==null) {
+				head=temp;
+				tail=head;
+				tail2=tail2.next;
+			}else {
+				tail.next=temp;
+				tail=temp;
+				tail2=tail2.next;
+			}
+		}
+
+		while(tail1!=null) {
+			ListNode temp=new ListNode();
+			temp=tail1;
+			if(head==null) {
+				head=temp;
+				tail=head;
+				tail1=tail1.next;
+			}else {
+				tail.next=temp;
+				tail=temp;
+				tail1=tail1.next;
+			}
+		}
+
+		return head;
+    }
+}
