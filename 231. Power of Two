@@ -1,0 +1,15 @@
+class Solution {
+    public boolean isPowerOfTwo(int n) {
+        if(n<0){
+            return false;
+        }
+      
+		double val=(Math.log(n)/Math.log(2));
+		val=Math.round(val*1000000000.00)/1000000000.00;
+        System.out.print(val);
+		if(val%1==0.0) {
+			return true;
+		}
+		return false;
+    }
+}
