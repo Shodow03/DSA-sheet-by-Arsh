@@ -1,0 +1,21 @@
+class Solution {
+    
+    public int reverse(long x) {
+        // if(x>=1073741824 || x<=-2147483648){
+        //     return 0;
+        // }
+    long num=0;
+	long val=0;
+	while(x/10!=0) {
+		val=x%10;
+		num=val+(num*10);
+		x=x/10;
+	}
+	num=(x+num*10);
+//        System.out.println(num);
+        if(num>2147483647 || num<-2147483648){
+            return 0;
+        }
+	return (int) num;
+    }
+}
